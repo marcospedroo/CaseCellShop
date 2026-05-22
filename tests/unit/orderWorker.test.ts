@@ -14,7 +14,12 @@ jest.mock('../../src/metrics/metrics', () => ({
   register: { metrics: jest.fn(), contentType: 'text/plain' },
 }));
 jest.mock('../../src/context/requestContext', () => ({
-  requestContext: { run: jest.fn((_ctx: unknown, fn: () => Promise<void>) => fn()), get: jest.fn(), getOrDefault: jest.fn(), setOrderId: jest.fn() },
+  requestContext: {
+    run: jest.fn((_ctx: unknown, fn: () => Promise<void>) => fn()),
+    get: jest.fn(),
+    getOrDefault: jest.fn(),
+    setOrderId: jest.fn(),
+  },
 }));
 
 const makeOrder = (id: string): Order => ({

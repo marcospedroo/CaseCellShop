@@ -35,7 +35,11 @@ export class OrderService implements IOrderService {
     };
   }
 
-  async updateOrderStatus(orderId: string, status: OrderStatus, failureReason?: string): Promise<void> {
+  async updateOrderStatus(
+    orderId: string,
+    status: OrderStatus,
+    failureReason?: string,
+  ): Promise<void> {
     const order = await this.repo.findById(orderId);
     const previousStatus = order?.status;
 

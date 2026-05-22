@@ -116,9 +116,7 @@ describe('Concurrency Tests', () => {
 
       expect(responses.every((r) => r.statusCode === 200)).toBe(true);
 
-      const statuses = responses.map(
-        (r) => (JSON.parse(r.body) as { status: string }).status,
-      );
+      const statuses = responses.map((r) => (JSON.parse(r.body) as { status: string }).status);
       expect(new Set(statuses).size).toBe(1);
     });
   });

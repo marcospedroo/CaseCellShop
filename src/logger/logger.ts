@@ -39,13 +39,14 @@ export const logger = {
     baseLogger.warn(withContext(meta), message);
   },
   error(message: string, err?: unknown, meta?: LogMeta): void {
-    const errorObj = err instanceof Error
-      ? {
-          message: err.message,
-          stack: process.env['NODE_ENV'] !== 'production' ? err.stack : undefined,
-          code: (err as NodeJS.ErrnoException).code,
-        }
-      : undefined;
+    const errorObj =
+      err instanceof Error
+        ? {
+            message: err.message,
+            stack: process.env['NODE_ENV'] !== 'production' ? err.stack : undefined,
+            code: (err as NodeJS.ErrnoException).code,
+          }
+        : undefined;
 
     baseLogger.error({ ...withContext(meta), error: errorObj }, message);
   },

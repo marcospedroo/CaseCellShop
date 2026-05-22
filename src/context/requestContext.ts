@@ -20,10 +20,12 @@ export const requestContext = {
   },
 
   getOrDefault(): RequestContextData {
-    return storage.getStore() ?? {
-      correlationId: 'unknown',
-      requestId: 'unknown',
-    };
+    return (
+      storage.getStore() ?? {
+        correlationId: 'unknown',
+        requestId: 'unknown',
+      }
+    );
   },
 
   setOrderId(orderId: string): void {
@@ -34,9 +36,13 @@ export const requestContext = {
   },
 };
 
-export function createContextFromRequest(headers: Record<string, string | string[] | undefined>, bodyOrderId?: string): RequestContextData {
+export function createContextFromRequest(
+  headers: Record<string, string | string[] | undefined>,
+  bodyOrderId?: string,
+): RequestContextData {
   const rawCorrelation = headers['x-correlation-id'];
-  const correlationId = (Array.isArray(rawCorrelation) ? rawCorrelation[0] : rawCorrelation) ?? randomUUID();
+  const correlationId =
+    (Array.isArray(rawCorrelation) ? rawCorrelation[0] : rawCorrelation) ?? randomUUID();
   const requestId = randomUUID();
   return {
     correlationId,

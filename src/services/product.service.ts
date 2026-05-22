@@ -1,6 +1,6 @@
 import type { Product, Result, AppError } from '../types';
 import type { IProductRepository } from '../repositories/product.repository';
-import type { IProductCache} from '../cache/productCache';
+import type { IProductCache } from '../cache/productCache';
 import { CACHE_KEY } from '../cache/productCache';
 import { logger } from '../logger/logger';
 import { startSpan } from '../tracer/tracer';
@@ -47,7 +47,11 @@ export class ProductService implements IProductService {
       span.finish({ error: true });
       return {
         success: false,
-        error: { code: 'PRODUCT_LIST_ERROR', message: 'Failed to retrieve products', statusCode: 500 },
+        error: {
+          code: 'PRODUCT_LIST_ERROR',
+          message: 'Failed to retrieve products',
+          statusCode: 500,
+        },
       };
     }
   }

@@ -36,7 +36,9 @@ describe('GET /products', () => {
   it('deve retornar produtos com campos corretos', async () => {
     const response = await app.inject({ method: 'GET', url: '/products' });
 
-    const body = JSON.parse(response.body) as { data: Array<{ id: string; name: string; price: number; stock: number }> };
+    const body = JSON.parse(response.body) as {
+      data: Array<{ id: string; name: string; price: number; stock: number }>;
+    };
     const product = body.data[0]!;
     expect(product).toHaveProperty('id');
     expect(product).toHaveProperty('name');

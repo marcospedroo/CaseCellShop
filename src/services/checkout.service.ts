@@ -45,7 +45,10 @@ export class CheckoutService implements ICheckoutService {
     return promise;
   }
 
-  private async doCheckout(request: CheckoutRequest, idempotencyKey: string): Promise<Result<CheckoutResponse, AppError>> {
+  private async doCheckout(
+    request: CheckoutRequest,
+    idempotencyKey: string,
+  ): Promise<Result<CheckoutResponse, AppError>> {
     const span = startSpan('checkout.process');
     const timer = checkoutProcessingDuration.startTimer();
     const start = Date.now();
@@ -128,9 +131,7 @@ export class CheckoutService implements ICheckoutService {
     }
   }
 
-  private async validateStock(
-    request: CheckoutRequest,
-  ): Promise<Result<Order['items'], AppError>> {
+  private async validateStock(request: CheckoutRequest): Promise<Result<Order['items'], AppError>> {
     const orderItems: Order['items'] = [];
 
     for (const item of request.items) {

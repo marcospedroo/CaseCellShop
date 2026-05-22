@@ -87,7 +87,11 @@ export class OrderWorker {
     }
 
     if (shouldFail) {
-      await this.orderRepo.updateStatus(orderId, 'failed', 'ERP processing failed after max retries');
+      await this.orderRepo.updateStatus(
+        orderId,
+        'failed',
+        'ERP processing failed after max retries',
+      );
       await this.restoreStock(orderId);
       const failedCount = await this.orderRepo.countByStatus('failed');
       ordersByStatusTotal.set({ status: 'failed' }, failedCount);
@@ -105,10 +109,9 @@ export class OrderWorker {
     const order = await this.orderRepo.findById(orderId);
     if (!order) return;
     for (const item of order.items) {
-      await (this.productRepo as { incrementStock?: (id: string, qty: number) => Promise<void> }).incrementStock?.(
-        item.productId,
-        item.quantity,
-      );
+      await (
+        this.productRepo as { incrementStock?: (id: string, qty: number) => Promise<void> }
+      ).incrementStock?.(item.productId, item.quantity);
     }
   }
 

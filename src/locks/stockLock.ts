@@ -17,7 +17,10 @@ export class StockLock {
       release = resolve;
     });
 
-    this.locks.set(productId, current.then(() => next));
+    this.locks.set(
+      productId,
+      current.then(() => next),
+    );
 
     await current;
 

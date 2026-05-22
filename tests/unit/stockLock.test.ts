@@ -33,10 +33,7 @@ describe('StockLock', () => {
   });
 
   it('deve permitir locks simultâneos em produtos diferentes', async () => {
-    const [r1, r2] = await Promise.all([
-      lock.acquire('product-a'),
-      lock.acquire('product-b'),
-    ]);
+    const [r1, r2] = await Promise.all([lock.acquire('product-a'), lock.acquire('product-b')]);
     r1();
     r2();
   });

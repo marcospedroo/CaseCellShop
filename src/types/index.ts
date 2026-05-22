@@ -63,9 +63,7 @@ export interface LogContext {
   };
 }
 
-export type Result<T, E = Error> =
-  | { success: true; data: T }
-  | { success: false; error: E };
+export type Result<T, E = Error> = { success: true; data: T } | { success: false; error: E };
 
 export interface AppError {
   code: string;

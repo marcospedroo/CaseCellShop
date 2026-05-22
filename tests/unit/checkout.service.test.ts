@@ -18,7 +18,12 @@ jest.mock('../../src/tracer/tracer', () => ({
   startSpan: jest.fn(() => ({ finish: jest.fn(), traceId: 'tid', spanId: 'sid' })),
 }));
 jest.mock('../../src/context/requestContext', () => ({
-  requestContext: { setOrderId: jest.fn(), run: jest.fn(), get: jest.fn(), getOrDefault: jest.fn() },
+  requestContext: {
+    setOrderId: jest.fn(),
+    run: jest.fn(),
+    get: jest.fn(),
+    getOrDefault: jest.fn(),
+  },
 }));
 
 const makeProduct = (id: string, stock: number, price = 29.99): Product => ({

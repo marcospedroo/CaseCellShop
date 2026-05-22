@@ -70,7 +70,10 @@ export async function checkoutRoute(app: FastifyInstance): Promise<void> {
       const rawKey = req.headers['idempotency-key'];
       const idempotencyKey = Array.isArray(rawKey) ? rawKey[0] : rawKey;
 
-      const body = req.body as { customerId: string; items: Array<{ productId: string; quantity: number }> };
+      const body = req.body as {
+        customerId: string;
+        items: Array<{ productId: string; quantity: number }>;
+      };
 
       const result = await service.checkout({
         customerId: body.customerId,
