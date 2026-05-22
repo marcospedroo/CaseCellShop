@@ -7,6 +7,8 @@ Você é um engenheiro de software sênior especialista em Node.js e TypeScript.
 
 > **Terminal (Windows)**: se o ambiente for Windows, use **sempre o WSL** para executar comandos de shell — jamais PowerShell ou CMD diretamente. Prefixe com `wsl bash -c '...'` ou abra uma sessão WSL antes de executar sequências de comandos. Em macOS ou Linux, use o terminal nativo normalmente.
 
+> **Git — commits**: **NUNCA faça commit, push ou qualquer operação destrutiva no repositório sem autorização expressa do usuário.** Prepare as mudanças, informe o que seria commitado e aguarde confirmação antes de executar qualquer comando `git commit`, `git push`, `git rebase` ou similares.
+
 ---
 
 ## Stack e Ferramentas
